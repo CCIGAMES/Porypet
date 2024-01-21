@@ -1,4 +1,3 @@
-import time
 import random
 import tkinter as tk
 
@@ -13,12 +12,13 @@ window.overrideredirect(1)
 
 photo = tk.PhotoImage(file="porygon.png")
 
-label = tk.Label(window, image=photo)
+label = tk.Label(window, image=photo, borderwidth=0, highlightthickness=0)
+label.configure(highlightthickness=0, bd=0)
 label.pack()
 
 def move_porygon():
-    x = random.randint(0, 500)
-    y = random.randint(0, 500)
+    x = random.randint(0, 400)  # Adjusted the x-coordinate range to prevent going off-screen
+    y = random.randint(0, 400)  # Adjusted the y-coordinate range to prevent going off-screen
     window.geometry("+%d+%d" % (x, y))
     window.after(50, move_porygon)
 
