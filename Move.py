@@ -1,7 +1,8 @@
 import time
 import random
 import tkinter as tk
-from Pillow import Image, ImageTk
+import PIL
+from PIL import Image, ImageTk
 
 def make_transparent(image_path):
     img = Image.open(image_path)
