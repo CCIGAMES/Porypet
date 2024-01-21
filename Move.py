@@ -1,6 +1,5 @@
 import tkinter as tk
 import random
-import time
 
 win = tk.Tk()
 
@@ -18,9 +17,25 @@ label.pack()
 def move_porygon():
     dx = random.randint(-5, 5)
     dy = random.randint(-5, 5)
-    x, y = window.winfo_x() + dx, window.winfo_y() + dy
-    window.geometry(f"+{x}+{y}")
-    window.after(50, move_porygon)  # Use 'after' for smoother animation
+    
+    # Get the current window position
+    current_x, current_y = window.winfo_x(), window.winfo_y()
+    
+    # Calculate the new position
+    new_x, new_y = current_x + dx, current_y + dy
+    
+    # Get desktop width and height
+    desktop_width = win.winfo_screenwidth()
+    desktop_height = win.winfo_screenheight()
+    
+    # Ensure the new position stays within desktop borders
+    new_x = max(0, min(new_x, desktop_width - window.winfo_width()))
+    new_y = max(0, min(new_y, desktop_height - window.winfo_height()))
+    
+    # Set the new position
+    window.geometry(f"+{new_x}+{new_y}")
+    
+    win.after(50, move_porygon)  # Use 'after' for smoother animation
 
 # Bind events for dragging
 start_x, start_y = 0, 0
